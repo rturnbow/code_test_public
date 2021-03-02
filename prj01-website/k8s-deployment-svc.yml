@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service                    # Type of kubernetes resource
+metadata:
+  name: prj01-website-service   # Name of the resource
+  namespace: project01
+spec:
+  type: NodePort                 # A port is opened on each node in your cluster via Kube proxy.
+  ports:                         # Take incoming HTTP requests on port and forward them to the targetPort
+  - name: http
+    port: 14000
+    targetPort: 14000
+  selector:
+    app: prj01-website         # Map any pod with label `app=prj01-website` to this service
